@@ -352,7 +352,7 @@ def run_script(profiles, config):
             # Record success
             with open("Profile_links_updated.csv", 'a', newline='', encoding='utf-8') as csvfile:
                 writer = csv.writer(csvfile)
-                writer.writerow([profile_url, "Success", message_text,datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
+                writer.writerow([profile_url, "Failed (Send button)",message_text,datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
             
             progress = (st.session_state.messages_sent / config['max_messages']) * 100
             show_status(f"✅ Message sent to {profile_url} (Total: {st.session_state.messages_sent}/{config['max_messages']})", progress)
@@ -364,7 +364,7 @@ def run_script(profiles, config):
             show_status(f"Send message button not found for {profile_url}")
             with open("Profile_links_updated.csv", 'a', newline='', encoding='utf-8') as csvfile:
                 writer = csv.writer(csvfile)
-                writer.writerow([profile_url, "Failed (Send button)", message_text,datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
+                writer.writerow([profile_url, "Success", message_text,datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
             return False
     
     # Reset counters at start
